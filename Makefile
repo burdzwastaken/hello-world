@@ -57,7 +57,7 @@ lint:
 .PHONY: build
 build:
 		docker build --rm -t $(PROJECT) .
-		docker tag burdz/helloworld burdz/helloworld:$(VERSION)
+		docker tag $(PROJECT) $(PROJECT):$(VERSION)
 
 .PHONY: push
 push:
