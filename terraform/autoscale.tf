@@ -1,6 +1,22 @@
+data "aws_ami" "hello-world" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["burdz-hello-world*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["self"] 
+}
+
 resource "aws_launch_configuration" "launch_configuration" {
   name_prefix   = "${var.role}-${var.environment}-"
-  image_id      = "${var.ami.id}"
+  image_id      = "${data.aws_ami.hello-world.id}"
   instance_type = "${var.instance_type}"
   key_name      = "${var.ssh_public_key_name}"
 

@@ -1,5 +1,3 @@
-variable "ami" {}
-
 variable "environment" {}
 
 variable "region" {}
