@@ -55,7 +55,6 @@
         "chmod +x bootstrap.sh",
         "ls -alh /tmp",
         "./bootstrap.sh",
-        "docker pull burdz/helloworld:latest",
         "docker run --restart=always -e PORT=8080 -p 8080:8080 -d burdz/helloworld:latest"
       ]
     }
