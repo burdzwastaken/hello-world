@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: helloworld
+  namespace: default
+data:
+  container.port: "8080"
