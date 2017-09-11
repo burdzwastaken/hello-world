@@ -3,6 +3,7 @@ resource "aws_launch_configuration" "launch_configuration" {
   image_id      = "${var.ami.id}"
   instance_type = "${var.instance_type}"
   key_name      = "${var.ssh_public_key_name}"
+  iam_instance_profile = "${aws_iam_instance_profile.default_profile.id}"
 
   security_groups = [
     "${aws_security_group.main.id}",
