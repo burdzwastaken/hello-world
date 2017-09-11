@@ -7,9 +7,8 @@
       "ssh_timeout": "10m",
       "region": "us-west-2",
       "instance_type": "t2.micro",
-      "vpc_id": "",
-      "security_group_id": "",
-      "subnet_id": "",
+      "vpc_id": "{{env `AWS_VPC_ID`}}",
+      "subnet_id": "{{env `AWS_VPC_ID`}}"
   },
   "builders": [{
       "name": "{{user `name`}}",
