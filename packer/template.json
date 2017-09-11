@@ -1,0 +1,63 @@
+{
+  "variables": {
+      "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
+      "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
+      "name": "burdz-hello-world",
+      "ssh_username": "ubuntu",
+      "ssh_timeout": "10m",
+      "region": "us-west-2",
+      "instance_type": "t2.micro",
+      "vpc_id": "",
+      "security_group_id": "",
+      "subnet_id": "",
+  },
+  "builders": [{
+      "name": "{{user `name`}}",
+      "type": "amazon-ebs",
+      "access_key": "{{user `aws_access_key`}}",
+      "secret_key": "{{user `aws_secret_key`}}",
+      "region": "{{user `region`}}",
+      "vpc_id": "{{user `vpc_id`}}",
+      "subnet_id": "{{user `subnet_id`}}",
+      "source_ami": "{{user `source_ami`}}",
+      "source_ami_filter": {
+	        "filters": {
+	            "virtualization-type": "hvm",
+	            "name": "ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*",
+	            "root-device-type": "ebs"
+      },
+      "instance_type": "{{user `isntance_type`}}",
+      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_timeout": "{{user ``ssh_timeout`}}",
+      "ami_name": "{{user `name`}} {{timestamp}}",
+      "ami_description": "{{user `name`}} AMI",
+      "run_tags": {
+        "ami-create": "{{user `name`}}"
+      },
+      "tags": {
+        "ami": "{{user `name`}}"
+      },
+      "ssh_private_ip": false,
+      "associate_public_ip_address": true
+    }
+  }],
+  "provisioners": [{
+      "type": "file",
+      "source": "bootstrap.sh",
+      "destination": "/tmp/bootstrap.sh"
+  },
+  {
+      "type": "shell",
+      "execute_command": "echo 'packer' | sudo -S sh -c '{{ .Vars }} {{ .Path }}'",
+      "inline": [
+        "whoami",
+        "cd /tmp",
+        "chmod +x bootstrap.sh",
+        "ls -alh /tmp",
+        "./bootstrap.sh",
+        "docker pull burdz/helloworld:latest",
+        "docker run --restart=always -e PORT=8080 -p 8080:8080 -d burdz/helloworld:latest"
+      ]
+    }
+  ]
+}
