@@ -4,8 +4,6 @@ variable "region" {}
 
 variable "vpc_id" {}
 
-variable "base_security_group" {}
-
 variable "zone_id" {}
 
 variable "private_subnets" {}

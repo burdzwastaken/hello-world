@@ -8,7 +8,7 @@
       "region": "us-west-2",
       "instance_type": "t2.micro",
       "vpc_id": "{{env `AWS_VPC_ID`}}",
-      "subnet_id": "{{env `AWS_VPC_ID`}}"
+      "subnet_id": "{{env `AWS_SUBNET_ID`}}"
   },
   "builders": [{
       "name": "{{user `name`}}",
@@ -25,9 +25,11 @@
 	       "name": "ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*",
 	       "root-device-type": "ebs"
       },
-      "instance_type": "{{user `isntance_type`}}",
+          "most_recent": true
+      },
+      "instance_type": "{{user `instance_type`}}",
       "ssh_username": "{{user `ssh_username`}}",
-      "ssh_timeout": "{{user ``ssh_timeout`}}",
+      "ssh_timeout": "{{user `ssh_timeout`}}",
       "ami_name": "{{user `name`}} {{timestamp}}",
       "ami_description": "{{user `name`}} AMI",
       "run_tags": {
@@ -38,7 +40,6 @@
       },
       "ssh_private_ip": false,
       "associate_public_ip_address": true
-    }
   }],
   "provisioners": [{
       "type": "file",
