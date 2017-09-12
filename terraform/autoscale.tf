@@ -20,7 +20,7 @@ resource "aws_launch_configuration" "launch_configuration" {
   instance_type = "${var.instance_type}"
   key_name      = "${var.ssh_public_key_name}"
   iam_instance_profile = "${aws_iam_instance_profile.default_profile.id}"
-
+  associate_public_ip_address = false
   security_groups = [
     "${aws_security_group.main.id}",
   ]
