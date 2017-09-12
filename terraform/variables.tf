@@ -22,8 +22,6 @@ variable "asg_azs" {
   default = [ "us-west-2a", "us-west-2b" ]
 }
 
-
-
 variable "role" {
   default = "burdz-hello-world"
 }
