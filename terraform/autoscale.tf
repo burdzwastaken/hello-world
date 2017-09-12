@@ -27,10 +27,7 @@ resource "aws_launch_configuration" "launch_configuration" {
 }
 
 resource "aws_autoscaling_group" "autoscaling_group" {
-  vpc_zone_identifier = [
-    "${split(",", var.private_subnets)}",
-  ]
-
+  availability_zones        = ["${split(",", var.asg_azs)}"]
   name                      = "${var.role}-${var.environment}"
   max_size                  = "${var.cluster_size}"
   min_size                  = "${var.cluster_size}"
