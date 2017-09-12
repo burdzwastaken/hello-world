@@ -1,16 +1,22 @@
-variable "environment" {}
+variable "environment" {
+  default = "dev"  
+}
 
-variable "region" {}
+variable "region" {
+  default = "us-west-2"
+}
 
-variable "vpc_id" {}
+variable "vpc_id" {
+  default = "vpc-b3fa6cd6"
+}
 
-variable "zone_id" {}
+variable "zone_id" {
+  default = "ZTQ3TT9KTV36"
+}
 
-variable "private_subnets" {}
-
-variable "public_subnets" {}
-
-variable "ssh_public_key_name" {}
+variable "ssh_public_key_name" {
+  default = "burdz"
+}
 
 variable "role" {
   default = "burdz-hello-world"
