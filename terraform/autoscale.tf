@@ -1,16 +1,16 @@
 data "aws_ami" "hello-world" {
   most_recent = true
-
+  
   filter {
     name   = "name"
     values = ["burdz-hello-world*"]
   }
-
+  
   filter {
     name   = "virtualization-type"
     values = ["hvm"]
   }
-
+  
   owners = ["self"] 
 }
 
@@ -27,7 +27,7 @@ resource "aws_launch_configuration" "launch_configuration" {
 }
 
 resource "aws_autoscaling_group" "autoscaling_group" {
-  availability_zones        = ["${split(",", var.asg_azs)}"]
+  availability_zones        = ["${var.asg_azs}"]
   name                      = "${var.role}-${var.environment}"
   max_size                  = "${var.cluster_size}"
   min_size                  = "${var.cluster_size}"

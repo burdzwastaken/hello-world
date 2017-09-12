@@ -25,5 +25,5 @@ resource "aws_elb" "ext" {
     "${aws_security_group.ext_elb_http.id}",
   ]
 
-  availability_zones = ["${split(",", var.asg_azs)}"]
+  availability_zones = ["${var.asg_azs}"]
 }

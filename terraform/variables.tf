@@ -19,7 +19,11 @@ variable "ssh_public_key_name" {
 }
 
 variable "asg_azs" {
-  default = [ "us-west-2a", "us-west-2b" ]
+  default = ["us-west-2a","us-west-2b","us-west-2c"]
+}
+
+variable "subnet" {
+  default = "subnet-36a7c853"
 }
 
 variable "role" {
@@ -52,4 +56,8 @@ variable "root_device_type" {
 
 variable "storage_type" {
   default = "gp2"
+}
+
+variable "aws_profile" {
+  default = "burdz"
 }
