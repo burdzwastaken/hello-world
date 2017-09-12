@@ -25,7 +25,5 @@ resource "aws_elb" "ext" {
     "${aws_security_group.ext_elb_http.id}",
   ]
 
-  subnets = [
-    "${split(",", var.public_subnets)}",
-  ]
+  availability_zones = ["${split(",", var.asg_azs)}"]
 }
