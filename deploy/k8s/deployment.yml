@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: helloworld
-        image: burdz/helloworld:latest
+        image: burdz/helloworld
         imagePullPolicy: Always
         env:
           - name: PORT
